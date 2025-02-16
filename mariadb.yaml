@@ -6,14 +6,11 @@ spec:
   rootPasswordSecretKeyRef:
     name: mariadb
     key: root-password
-
+  database: hass
   username: hass
   passwordSecretKeyRef:
     name: mariadb
     key: hass
-
-  database: hass
-
   storage:
     size: 8Gi
     storageClassName: ceph-block
@@ -26,12 +23,9 @@ spec:
         requests:
           storage: 8Gi
       storageClassName: ceph-block
-
   replicas: 3
-
   galera:
     enabled: true
-
   service:
     type: LoadBalancer
     externalTrafficPolicy: Local
@@ -39,20 +33,17 @@ spec:
       annotations:
         service.cilium.io/forwarding-mode: dsr
         external-dns.alpha.kubernetes.io/hostname: "db.hass.farh.net"
-
   primaryService:
     type: LoadBalancer
     externalTrafficPolicy: Local
     metadata:
       annotations:
         service.cilium.io/forwarding-mode: dsr
-
   secondaryService:
     type: LoadBalancer
     externalTrafficPolicy: Local
     metadata:
       annotations:
         service.cilium.io/forwarding-mode: dsr
-
   metrics:
     enabled: false
