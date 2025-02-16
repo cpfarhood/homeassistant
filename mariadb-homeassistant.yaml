@@ -9,8 +9,8 @@ spec:
 
   username: hass
   passwordSecretKeyRef:
-    name: hass
-    key: password
+    name: mariadb
+    key: hass
 
   database: hass
 
