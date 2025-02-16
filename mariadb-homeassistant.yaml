@@ -1,0 +1,48 @@
+apiVersion: k8s.mariadb.com/v1alpha1
+kind: MariaDB
+metadata:
+  name: homeassistant
+spec:
+  rootPasswordSecretKeyRef:
+    name: mariadb
+    key: root-password
+
+  username: hass
+  passwordSecretKeyRef:
+    name: hass
+    key: password
+
+  database: hass
+
+  storage:
+    size: 1Gi
+
+  replicas: 3
+
+  galera:
+    enabled: true
+
+  service:
+    type: LoadBalancer
+    externalTrafficPolicy: Local
+    metadata:
+      annotations:
+        service.cilium.io/forwarding-mode: dsr
+        external-dns.alpha.kubernetes.io/hostname: "db.hass.farh.net"
+
+  primaryService:
+    type: LoadBalancer
+    externalTrafficPolicy: Local
+    metadata:
+      annotations:
+        service.cilium.io/forwarding-mode: dsr
+
+  secondaryService:
+    type: LoadBalancer
+    externalTrafficPolicy: Local
+    metadata:
+      annotations:
+        service.cilium.io/forwarding-mode: dsr
+
+  metrics:
+    enabled: true
