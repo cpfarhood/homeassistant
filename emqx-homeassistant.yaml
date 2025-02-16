@@ -19,6 +19,14 @@ spec:
       }
   coreTemplate:
     spec:
+      volumeClaimTemplates:
+        storageClassName: ceph-block
+        resources:
+          requests:
+            storage: 1Gi
+        accessModes:
+          - ReadWriteOnce
+      replicas: 3
       extraVolumes:
         - name: emqx-tls
           secret:
