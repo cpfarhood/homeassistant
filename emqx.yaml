@@ -1,7 +1,7 @@
 apiVersion: apps.emqx.io/v2beta1
 kind: EMQX
 metadata:
-  name: homeassistant
+  name: emqx
 spec:
   image: emqx:5
   imagePullPolicy: Always
