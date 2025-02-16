@@ -57,7 +57,7 @@ spec:
   dashboardServiceTemplate:
     metadata:
       annotations:
-        external-dns.alpha.kubernetes.io/hostname: "mqtt.farh.net"
+        external-dns.alpha.kubernetes.io/hostname: "mqtt.hass.farh.net"
         lbipam.cilium.io/sharing-key: "emqx-homeassistant"
         lbipam.cilium.io/ips: "65.43.40.103"
         service.cilium.io/forwarding-mode: dsr
