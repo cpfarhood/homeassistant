@@ -15,7 +15,13 @@ spec:
   database: hass
 
   storage:
-    size: 1Gi
+    volumeClaimTemplate:
+      accessModes:
+      - ReadWriteOnce
+      resources:
+        requests:
+          storage: 8Gi
+      storageClassName: ceph-block
 
   replicas: 3
 
