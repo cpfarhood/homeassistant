@@ -10,7 +10,7 @@ spec:
       listeners.ssl.default {
         bind = "0.0.0.0:8883"
         ssl_options {
-          cacertfile = "/mounted/cert/ca.crt"
+        #  cacertfile = "/mounted/cert/ca.crt"
           certfile = "/mounted/cert/tls.crt"
           keyfile = "/mounted/cert/tls.key"
           gc_after_handshake = true
