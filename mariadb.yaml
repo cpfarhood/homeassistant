@@ -15,6 +15,10 @@ spec:
   database: hass
 
   storage:
+    size: 8Gi
+    storageClassName: ceph-block
+    resizeInUseVolumes: true
+    waitForVolumeResize: true
     volumeClaimTemplate:
       accessModes:
       - ReadWriteOnce
