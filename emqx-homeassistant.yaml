@@ -1,0 +1,60 @@
+apiVersion: apps.emqx.io/v2beta1
+kind: EMQX
+metadata:
+  name: homeassistant
+spec:
+  image: emqx:5
+  imagePullPolicy: Always
+  config:
+    data: |
+      listeners.ssl.default {
+        bind = "0.0.0.0:8883"
+        ssl_options {
+          cacertfile = "/mounted/cert/ca.crt"
+          certfile = "/mounted/cert/tls.crt"
+          keyfile = "/mounted/cert/tls.key"
+          gc_after_handshake = true
+          handshake_timeout = 5s
+        }
+      }
+  coreTemplate:
+    spec:
+      extraVolumes:
+        - name: emqx-tls
+          secret:
+            secretName: emqx-tls
+      extraVolumeMounts:
+        - name: emqx-tls
+          mountPath: /mounted/cert
+  #replicantTemplate:
+  #  spec:
+  #    extraVolumes:
+  #      - name: emqx-tls
+  #        secret:
+  #          secretName: emqx-tls
+  #    extraVolumeMounts:
+  #      - name: emqx-tls
+  #        mountPath: /mounted/cert
+  listenersServiceTemplate:
+    metadata:
+      annotations:
+        lbipam.cilium.io/sharing-key: "emqx-homeassistant"
+        lbipam.cilium.io/ips: "65.43.40.103"
+        service.cilium.io/forwarding-mode: dsr
+      labels:
+        zone: public
+    spec:
+      type: LoadBalancer
+      externalTrafficPolicy: Local
+  dashboardServiceTemplate:
+    metadata:
+      annotations:
+        external-dns.alpha.kubernetes.io/hostname: "mqtt.farh.net"
+        lbipam.cilium.io/sharing-key: "emqx-homeassistant"
+        lbipam.cilium.io/ips: "65.43.40.103"
+        service.cilium.io/forwarding-mode: dsr
+      labels:
+        zone: public
+    spec:
+      type: LoadBalancer
+      externalTrafficPolicy: Local
