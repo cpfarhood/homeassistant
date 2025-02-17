@@ -24,8 +24,6 @@ spec:
           storage: 8Gi
       storageClassName: ceph-block
   replicas: 3
-  galera:
-    enabled: true
   service:
     type: LoadBalancer
     externalTrafficPolicy: Local
@@ -47,3 +45,15 @@ spec:
         service.cilium.io/forwarding-mode: dsr
   metrics:
     enabled: false
+  resources:
+    requests:
+      cpu: 100m
+      memory: 1Gi
+    limits:
+      cpu: 500m
+      memory: 2Gi
+  galera:
+    enabled: true
+  myCnf: |
+    [mariadb]
+    innodb_buffer_pool_size=1024M
