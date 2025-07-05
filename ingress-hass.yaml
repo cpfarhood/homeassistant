@@ -1,0 +1,22 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: hass-ingress
+  namespace: homeassistant
+  annotations:
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure
+    traefik.ingress.kubernetes.io/service.servicename: external-service-hass
+    traefik.ingress.kubernetes.io/service.servicedomain: "hass.lan.farh.net"
+    traefik.ingress.kubernetes.io/service.serviceport: "8123"
+spec:
+  rules:
+    - host: hass.farh.net  # Replace with the domain you want to use
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: external-service-hass
+                port:
+                  number: 80  # This can be 80 or whatever internal port is available for routing to the external endpoint
