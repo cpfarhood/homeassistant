@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-internal
+  namespace: homeassistant
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt
+spec:
+  ingressClassName: traefik-internal
+  rules:
+  - host: hass-mqtt-dashboard.animaniacs.farh.net
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name:  emqx-dashboard
+            port:
+              number: 18083
+  tls:
+  - hosts:
+    - hass-mqtt-dashboard.animaniacs.farh.net
+    secretName: hass-mqtt-dashboard-tls

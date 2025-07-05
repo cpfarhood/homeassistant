@@ -46,18 +46,11 @@ spec:
   listenersServiceTemplate:
     metadata:
       annotations:
-        lbipam.cilium.io/sharing-key: "emqx-homeassistant"
         service.cilium.io/forwarding-mode: dsr
         external-dns.alpha.kubernetes.io/hostname: "hass-mqtt.animaniacs.farh.net"
     spec:
       type: LoadBalancer
       externalTrafficPolicy: Local
   dashboardServiceTemplate:
-    metadata:
-      annotations:
-        lbipam.cilium.io/sharing-key: "emqx-homeassistant"
-        service.cilium.io/forwarding-mode: dsr
-        external-dns.alpha.kubernetes.io/hostname: "hass-mqtt.animaniacs.farh.net"
     spec:
-      type: LoadBalancer
-      externalTrafficPolicy: Local
+      externalTrafficPolicy: ClusterIP
