@@ -47,22 +47,17 @@ spec:
     metadata:
       annotations:
         lbipam.cilium.io/sharing-key: "emqx-homeassistant"
-        lbipam.cilium.io/ips: "65.43.40.104"
         service.cilium.io/forwarding-mode: dsr
-      labels:
-        zone: public
+        external-dns.alpha.kubernetes.io/hostname: "hass-mqtt.animaniacs.farh.net"
     spec:
       type: LoadBalancer
       externalTrafficPolicy: Local
   dashboardServiceTemplate:
     metadata:
       annotations:
-        external-dns.alpha.kubernetes.io/hostname: "mqtt.hass.farh.net"
         lbipam.cilium.io/sharing-key: "emqx-homeassistant"
-        lbipam.cilium.io/ips: "65.43.40.104"
         service.cilium.io/forwarding-mode: dsr
-      labels:
-        zone: public
+        external-dns.alpha.kubernetes.io/hostname: "hass-mqtt.animaniacs.farh.net"
     spec:
       type: LoadBalancer
       externalTrafficPolicy: Local
