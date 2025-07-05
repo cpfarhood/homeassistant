@@ -4,7 +4,6 @@ metadata:
   name: external-service-hass
 spec:
   ports:
-    - port: 80
-      targetPort: 80  # Dummy port since Traefik will route to external endpoint
+    - port: 8123
   selector: {}
   clusterIP: None

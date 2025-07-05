@@ -19,4 +19,8 @@ spec:
               service:
                 name: external-service-hass
                 port:
-                  number: 80  # This can be 80 or whatever internal port is available for routing to the external endpoint
+                  number: 8123  # This can be 80 or whatever internal port is available for routing to the external endpoint
+  tls:
+  - hosts:
+    - hass.farh.net
+    secretName: ingress-hass-tls
