@@ -30,7 +30,7 @@ spec:
     metadata:
       annotations:
         service.cilium.io/forwarding-mode: dsr
-        external-dns.alpha.kubernetes.io/hostname: "db.hass.farh.net"
+        external-dns.alpha.kubernetes.io/hostname: "hass-db.animaniacs.farh.net"
   primaryService:
     type: LoadBalancer
     externalTrafficPolicy: Local
