@@ -51,6 +51,4 @@ spec:
     spec:
       type: LoadBalancer
       externalTrafficPolicy: Local
-  dashboardServiceTemplate:
-    spec:
-      externalTrafficPolicy: ClusterIP
+      

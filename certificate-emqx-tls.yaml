@@ -9,4 +9,4 @@ spec:
     name: letsencrypt
     kind: ClusterIssuer
   dnsNames:
-    - "mqtt.farh.net"
+    - "hass-mqtt.animaniacs.farh.net"
