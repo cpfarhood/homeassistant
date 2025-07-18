@@ -3,8 +3,11 @@ kind: Ingress
 metadata:
   name: hass-external-ingress
   annotations:
-    kubernetes.io/ingress.class: traefik-external
+    cert-manager.io/cluster-issuer: letsencrypt
+    external-dns.alpha.kubernetes.io/hostname: "hass.farh.net"
+    external-dns.alpha.kubernetes.io/target: "108.254.166.31"
 spec:
+  ingressClassName: traefik-external
   rules:
     - host: hass.farh.net
       http:
