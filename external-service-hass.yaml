@@ -1,9 +1,10 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: external-service-hass
+  name: hass-lan
 spec:
+  type: ExternalName
+  externalName: hass.lan.farh.net
   ports:
     - port: 8123
-  selector: {}
-  clusterIP: None
+      targetPort: 8123
