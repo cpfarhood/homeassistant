@@ -53,6 +53,8 @@ spec:
       memory: 8Gi
   galera:
     enabled: true
+    config:
+      reuseStorageVolume: true
   myCnf: |
     [mariadb]
     innodb_buffer_pool_size=1024M
